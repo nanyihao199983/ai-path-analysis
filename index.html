@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI路子大数据分析系统 | 1324实战版</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 标题 -->
+    <header class="header">
+      <div class="status-bar">
+        <span class="blink">●</span> SYSTEM ONLINE
+      </div>
+      <h1>AI 路子大数据分析</h1>
+      <p class="subtitle">1324 实战版 · v2.4.1</p>
+    </header>
+
+    <!-- 第一阶段：路子采集 -->
+    <section class="module" id="input-layer">
+      <h2 class="module-title">&gt; 路子采集模块</h2>
+      <p class="module-desc">输入 5-10 局历史路子数据</p>
+      <div class="slots" id="slots"></div>
+      <div class="counter">已输入: <span id="slot-count">0</span>/10</div>
+      <button class="btn-primary" id="analyze-btn" disabled>开始 AI 建模分析</button>
+    </section>
+
+    <!-- 第二阶段：AI 建模动画 -->
+    <section class="module hidden" id="processing-layer">
+      <h2 class="module-title">&gt; AI 建模分析中...</h2>
+      <div class="scan-lines"></div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress"></div>
+      </div>
+      <div class="log" id="log"></div>
+    </section>
+
+    <!-- 第三阶段：走势预测 -->
+    <section class="module hidden" id="prediction-layer">
+      <h2 class="module-title">&gt; 走势预测结果</h2>
+      <div class="predictions" id="predictions"></div>
+    </section>
+
+    <!-- 裂变弹窗 -->
+    <div class="overlay hidden" id="overlay">
+      <div class="popup">
+        <h3 class="popup-title">⚠️ 数据预警</h3>
+        <p class="popup-text">检测到当前路子胜率极高，请转发至 3 个群解锁后续必中参数。</p>
+        <div class="share-counter">已转发: <span id="share-count">0</span>/3</div>
+        <button class="btn-share" id="share-btn">立即分享</button>
+      </div>
+    </div>
+
+    <!-- 第四阶段：解锁完成 -->
+    <section class="module hidden" id="unlocked-layer">
+      <h2 class="module-title">&gt; 全部预测已解锁</h2>
+      <div id="full-predictions"></div>
+      <p class="unlock-msg">参数已解锁，请添加蝙蝠号获取实时监控。</p>
+    </section>
+
+    <!-- 页脚转化 -->
+    <footer class="footer">
+      <p class="footer-text">添加技术员蝙蝠号：<span class="highlight" id="bat-id">142078040</span></p>
+      <button class="btn-copy" id="copy-btn">复制蝙蝠号</button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
