@@ -18,11 +18,35 @@
         <span class="status-text">SYSTEM ONLINE</span>
       </div>
       <div class="app-title">AI 路子大数据分析</div>
-      <div class="app-version">1324 实战版 v3.0</div>
+      <div class="app-version">1324 实战版 v3.1</div>
     </header>
 
-    <!-- 第一步：输入历史路子 -->
+    <!-- 第一步：输入金额 + 历史路子 -->
     <section id="step-input" class="step active">
+      <div class="step-header">
+        <h2>💰 资金规划模块</h2>
+        <p class="step-desc">请输入总投入金额</p>
+      </div>
+      
+      <!-- 金额输入 -->
+      <div class="amount-section">
+        <div class="amount-input-wrap">
+          <span class="currency">¥</span>
+          <input type="number" id="total-amount" placeholder="输入总投入金额" min="100" step="100" inputmode="numeric">
+        </div>
+        <div class="amount-presets">
+          <button class="preset" data-amount="500">500</button>
+          <button class="preset" data-amount="1000">1K</button>
+          <button class="preset" data-amount="5000">5K</button>
+          <button class="preset" data-amount="10000">1W</button>
+          <button class="preset" data-amount="50000">5W</button>
+        </div>
+      </div>
+
+      <div class="section-divider">
+        <span class="divider-text">↓ 路子采集 ↓</span>
+      </div>
+
       <div class="step-header">
         <h2>📊 路子采集模块</h2>
         <p class="step-desc">点击输入 5-10 局历史路子</p>
@@ -136,7 +160,7 @@
 
       <div class="summary-card">
         <div class="summary-row">
-          <span class="summary-label">总投注</span>
+          <span class="summary-label">总投入</span>
           <span class="summary-value" id="total-bet">¥0</span>
         </div>
         <div class="summary-row">

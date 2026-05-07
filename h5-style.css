@@ -107,6 +107,94 @@ body {
   color: #888;
 }
 
+/* 金额输入区域 */
+.amount-section {
+  background: #111;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.amount-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.currency {
+  font-size: 24px;
+  font-weight: 800;
+  color: #00ff00;
+  margin-right: 8px;
+}
+
+.amount-input-wrap input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  outline: none;
+}
+
+.amount-input-wrap input::placeholder {
+  color: #555;
+}
+
+.amount-presets {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.preset {
+  flex: 1;
+  min-width: 60px;
+  padding: 10px 0;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #ffd700;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.preset:active {
+  transform: scale(0.95);
+  background: #333;
+}
+
+.section-divider {
+  text-align: center;
+  margin: 16px 0;
+  position: relative;
+}
+
+.divider-text {
+  background: #000;
+  color: #555;
+  font-size: 12px;
+  padding: 0 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: #333;
+}
+
 /* 输入槽位 */
 .input-slots {
   margin-bottom: 20px;
@@ -362,6 +450,12 @@ body {
 .preview-value.banker { color: #ff0000; }
 .preview-value.player { color: #0000ff; }
 
+.preview-amount {
+  font-size: 13px;
+  color: #ffd700;
+  margin-bottom: 6px;
+}
+
 .preview-rate {
   display: flex;
   align-items: center;
@@ -512,8 +606,9 @@ body {
 .pred-result.player { color: #0000ff; }
 
 .pred-amount {
-  font-size: 14px;
-  color: #00ff00;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffd700;
 }
 
 .pred-rate {
@@ -627,4 +722,26 @@ body {
 
 .btn-copy:active {
   transform: scale(0.98);
+}
+
+/* 金额分配展示 */
+.amount-display {
+  font-size: 13px;
+  color: #ffd700;
+  margin-top: 4px;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step.active {
+  animation: slideUp 0.3s ease-out;
 }

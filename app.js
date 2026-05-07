@@ -3,8 +3,13 @@ const state = {
   slots: Array(10).fill(null),
   shareCount: 0,
   predictions: [],
+  totalAmount: 0,
   currentStep: 'input'
 };
+
+// 1324 打法比例
+const RATIOS = [1, 3, 2, 4];
+const RATIO_SUM = RATIOS.reduce((a, b) => a + b, 0); // = 10
 
 // DOM 缓存
 const $ = id => document.getElementById(id);
@@ -13,6 +18,37 @@ const $ = id => document.getElementById(id);
 function init() {
   bindSlots();
   bindButtons();
+  bindAmountInput();
+}
+
+// 绑定金额输入
+function bindAmountInput() {
+  const input = $('total-amount');
+  if (!input) return;
+
+  input.addEventListener('input', () => {
+    const val = parseInt(input.value) || 0;
+    state.totalAmount = val;
+    updateAnalyzeBtn();
+  });
+
+  // 快捷金额按钮
+  document.querySelectorAll('.preset').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const amount = parseInt(btn.dataset.amount);
+      input.value = amount;
+      state.totalAmount = amount;
+      updateAnalyzeBtn();
+    });
+  });
+}
+
+// 更新分析按钮状态
+function updateAnalyzeBtn() {
+  const filled = state.slots.filter(s => s !== null).length;
+  const hasAmount = state.totalAmount >= 100;
+  const btn = $('btn-analyze');
+  if (btn) btn.disabled = !(filled >= 5 && hasAmount);
 }
 
 // 绑定槽位
@@ -46,6 +82,7 @@ function toggleSlot(index) {
   }
 
   updateStats();
+  updateAnalyzeBtn();
 }
 
 // 更新统计
@@ -57,14 +94,18 @@ function updateStats() {
   $('input-count').textContent = filled;
   $('banker-count').textContent = bankers;
   $('player-count').textContent = players;
-  $('btn-analyze').disabled = filled < 5;
 }
 
 // 绑定按钮
 function bindButtons() {
-  $('btn-analyze').addEventListener('click', startAnalysis);
-  $('btn-share').addEventListener('click', handleShare);
-  $('btn-copy').addEventListener('click', () => {
+  const btnAnalyze = $('btn-analyze');
+  if (btnAnalyze) btnAnalyze.addEventListener('click', startAnalysis);
+  
+  const btnShare = $('btn-share');
+  if (btnShare) btnShare.addEventListener('click', handleShare);
+  
+  const btnCopy = $('btn-copy');
+  if (btnCopy) btnCopy.addEventListener('click', () => {
     copyText('142078040');
     showToast('蝙蝠号已复制');
   });
@@ -76,7 +117,7 @@ async function startAnalysis() {
   
   const logs = [
     { text: '正在连接大其力算力中心...', delay: 400 },
-    { text: '正在匹配 1324 复利模型...', delay: 700 },
+    { text: `检测到总资金 ¥${state.totalAmount}，正在按 1324 模型分配...`, delay: 700 },
     { text: '正在分析历史路子数据...', delay: 1000 },
     { text: 'AI 深度学习建模中...', delay: 1400 },
     { text: '胜率计算完成', delay: 1800, success: true },
@@ -96,18 +137,21 @@ async function startAnalysis() {
   showPreview();
 }
 
-// 生成预测
+// 生成预测（按 1324 比例分配金额）
 function generatePredictions() {
   const outcomes = ['banker', 'player'];
-  const amounts = [100, 300, 200, 400];
   const predictions = [];
 
   for (let i = 0; i < 4; i++) {
+    // 按 1324 比例分配
+    const ratio = RATIOS[i];
+    const amount = Math.floor(state.totalAmount * ratio / RATIO_SUM);
+
     predictions.push({
       round: i + 1,
       outcome: outcomes[Math.floor(Math.random() * 2)],
       winRate: Math.floor(Math.random() * 11) + 85,
-      amount: amounts[i]
+      amount: amount
     });
   }
 
@@ -134,6 +178,7 @@ function showPreview() {
         </div>
         <span class="preview-rate-text">${pred.winRate}%</span>
       </div>
+      <div class="preview-amount">投注: ¥${pred.amount}</div>
     `;
     container.appendChild(card);
   });
@@ -197,7 +242,8 @@ function showFullResults() {
 // 切换步骤
 function showStep(stepName) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  $(`step-${stepName}`).classList.add('active');
+  const target = $(`step-${stepName}`);
+  if (target) target.classList.add('active');
 }
 
 // 添加日志
