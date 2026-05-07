@@ -234,6 +234,16 @@ body {
   border-color: #0000ff;
 }
 
+.slot.tie {
+  background: linear-gradient(135deg, #ffaa00, #ff8800);
+  border-color: #ffaa00;
+}
+
+.slot.tie {
+  background: linear-gradient(135deg, #ffaa00, #ff8800);
+  border-color: #ffaa00;
+}
+
 .slot-num {
   font-size: 16px;
   font-weight: 600;
@@ -276,6 +286,8 @@ body {
 
 .stat-value.banker { color: #ff0000; }
 .stat-value.player { color: #0000ff; }
+.stat-value.tie { color: #ffaa00; }
+.stat-value.tie { color: #ffaa00; }
 
 .stat-unit {
   font-size: 12px;
@@ -434,6 +446,8 @@ body {
 
 .preview-card.banker { border-left-color: #ff0000; }
 .preview-card.player { border-left-color: #0000ff; }
+.preview-card.tie { border-left-color: #ffaa00; }
+.preview-card.tie { border-left-color: #ffaa00; }
 
 .preview-label {
   font-size: 12px;
@@ -449,6 +463,8 @@ body {
 
 .preview-value.banker { color: #ff0000; }
 .preview-value.player { color: #0000ff; }
+.preview-value.tie { color: #ffaa00; }
+.preview-value.tie { color: #ffaa00; }
 
 .preview-amount {
   font-size: 13px;
@@ -584,6 +600,8 @@ body {
 
 .pred-item.banker { border-left-color: #ff0000; }
 .pred-item.player { border-left-color: #0000ff; }
+.pred-item.tie { border-left-color: #ffaa00; }
+.pred-item.tie { border-left-color: #ffaa00; }
 
 .pred-header {
   display: flex;
@@ -604,6 +622,8 @@ body {
 
 .pred-result.banker { color: #ff0000; }
 .pred-result.player { color: #0000ff; }
+.pred-result.tie { color: #ffaa00; }
+.pred-result.tie { color: #ffaa00; }
 
 .pred-amount {
   font-size: 16px;

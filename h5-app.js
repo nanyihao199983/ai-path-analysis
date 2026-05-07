@@ -61,23 +61,26 @@ function bindSlots() {
   });
 }
 
-// 切换槽位
+// 切换槽位：空 → 庄 → 闲 → 和 → 空
 function toggleSlot(index) {
   const slot = document.querySelector(`.slot[data-index="${index}"]`);
   const current = state.slots[index];
 
   if (current === null) {
     state.slots[index] = 'banker';
-    slot.classList.add('banker');
+    slot.className = 'slot banker';
     slot.innerHTML = '<span class="slot-num">庄</span>';
   } else if (current === 'banker') {
     state.slots[index] = 'player';
-    slot.classList.remove('banker');
-    slot.classList.add('player');
+    slot.className = 'slot player';
     slot.innerHTML = '<span class="slot-num">闲</span>';
+  } else if (current === 'player') {
+    state.slots[index] = 'tie';
+    slot.className = 'slot tie';
+    slot.innerHTML = '<span class="slot-num">和</span>';
   } else {
     state.slots[index] = null;
-    slot.classList.remove('player');
+    slot.className = 'slot';
     slot.innerHTML = `<span class="slot-num">${index + 1}</span>`;
   }
 
@@ -90,10 +93,13 @@ function updateStats() {
   const filled = state.slots.filter(s => s !== null).length;
   const bankers = state.slots.filter(s => s === 'banker').length;
   const players = state.slots.filter(s => s === 'player').length;
+  const ties = state.slots.filter(s => s === 'tie').length;
 
   $('input-count').textContent = filled;
   $('banker-count').textContent = bankers;
   $('player-count').textContent = players;
+  const tieCount = $('tie-count');
+  if (tieCount) tieCount.textContent = ties;
 }
 
 // 绑定按钮
@@ -139,7 +145,7 @@ async function startAnalysis() {
 
 // 生成预测（按 1324 比例分配金额）
 function generatePredictions() {
-  const outcomes = ['banker', 'player'];
+  const outcomes = ['banker', 'player', 'tie'];
   const predictions = [];
 
   for (let i = 0; i < 4; i++) {
@@ -149,7 +155,7 @@ function generatePredictions() {
 
     predictions.push({
       round: i + 1,
-      outcome: outcomes[Math.floor(Math.random() * 2)],
+      outcome: outcomes[Math.floor(Math.random() * 3)],
       winRate: Math.floor(Math.random() * 11) + 85,
       amount: amount
     });
@@ -171,7 +177,7 @@ function showPreview() {
     card.className = `preview-card ${pred.outcome}`;
     card.innerHTML = `
       <div class="preview-label">第 ${pred.round} 局</div>
-      <div class="preview-value ${pred.outcome}">${pred.outcome === 'banker' ? '庄' : '闲'}</div>
+      <div class="preview-value ${pred.outcome}">${pred.outcome === 'banker' ? '庄' : pred.outcome === 'player' ? '闲' : '和'}</div>
       <div class="preview-rate">
         <div class="preview-rate-bar">
           <div class="preview-rate-fill" style="width: ${pred.winRate}%"></div>
@@ -220,7 +226,7 @@ function showFullResults() {
     item.innerHTML = `
       <div class="pred-header">
         <span class="pred-round">第 ${pred.round} 局</span>
-        <span class="pred-result ${pred.outcome}">${pred.outcome === 'banker' ? '庄' : '闲'}</span>
+        <span class="pred-result ${pred.outcome}">${pred.outcome === 'banker' ? '庄' : pred.outcome === 'player' ? '闲' : '和'}</span>
         <span class="pred-amount">¥${pred.amount}</span>
       </div>
       <div class="pred-rate">
