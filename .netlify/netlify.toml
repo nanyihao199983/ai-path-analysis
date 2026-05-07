@@ -1,5 +1,5 @@
+headersOrigin = "config"
 plugins = []
-headers = []
 redirects = []
 
 [functions]
@@ -8,7 +8,9 @@ redirects = []
 
 [build]
 publish = "/root/.openclaw/workspace/ai-path-analysis"
-publishOrigin = "default"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "echo 'no build needed'"
 
 [build.environment]
 
@@ -23,3 +25,9 @@ publishOrigin = "default"
 [build.processing.js]
 
 [build.services]
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Robots-Tag = "index"
