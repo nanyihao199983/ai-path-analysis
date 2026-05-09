@@ -1,23 +1,17 @@
-# 系统文件
+# OS
 .DS_Store
 Thumbs.db
 
-# 编辑器
+# Editor
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
-# 日志
-*.log
-
-# 环境变量
-.env
-.env.local
-
-# 构建产物
+# Build output
 dist/
 build/
-*.zip
-*.tar.gz
+
+# Environment
+.env
+.env.local
