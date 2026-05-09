@@ -8,10 +8,9 @@ Thumbs.db
 *.swp
 *.swo
 
-# Build output
+# Build
 dist/
 build/
 
-# Environment
-.env
-.env.local
+# Logs
+*.log
