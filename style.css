@@ -466,6 +466,33 @@ body {
 .preview-value.tie { color: #ffaa00; }
 .preview-value.tie { color: #ffaa00; }
 
+.preview-algos {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+.preview-reasons {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  text-align: left;
+}
+.pred-reasons {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  text-align: left;
+  margin-top: 6px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+.pred-reasons::before {
+  content: '分析依据：';
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+}
+
 .preview-amount {
   font-size: 13px;
   color: #ffd700;

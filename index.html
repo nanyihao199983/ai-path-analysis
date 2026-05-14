@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <title>AI 路子大数据分析 | 1324 实战版</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <meta name="description" content="AI路子大数据分析系统，基于1324打法，多算法融合预测">
+  <meta name="keywords" content="AI路子分析,路子预测,1324打法">
+  <title>AI 路子大数据分析</title>
+  <link rel="stylesheet" href="style.css?v=4">
+  <script src="config.js?v=4"></script>
+  <script src="engine.js?v=4"></script>
 </head>
 <body>
   <div class="app-container">
@@ -18,7 +22,7 @@
         <span class="status-text">SYSTEM ONLINE</span>
       </div>
       <div class="app-title">AI 路子大数据分析</div>
-      <div class="app-version">1324 实战版 v3.1</div>
+      <div class="app-version"></div>
     </header>
 
     <!-- 第一步：输入金额 + 历史路子 -->
@@ -49,25 +53,10 @@
 
       <div class="step-header">
         <h2>📊 路子采集模块</h2>
-        <p class="step-desc">点击输入 5-10 局历史路子</p>
+        <p class="step-desc">点击输入历史路子（最多30局）</p>
       </div>
       
-      <div class="input-slots">
-        <div class="slot-row">
-          <div class="slot" data-index="0"><span class="slot-num">1</span></div>
-          <div class="slot" data-index="1"><span class="slot-num">2</span></div>
-          <div class="slot" data-index="2"><span class="slot-num">3</span></div>
-          <div class="slot" data-index="3"><span class="slot-num">4</span></div>
-          <div class="slot" data-index="4"><span class="slot-num">5</span></div>
-        </div>
-        <div class="slot-row">
-          <div class="slot" data-index="5"><span class="slot-num">6</span></div>
-          <div class="slot" data-index="6"><span class="slot-num">7</span></div>
-          <div class="slot" data-index="7"><span class="slot-num">8</span></div>
-          <div class="slot" data-index="8"><span class="slot-num">9</span></div>
-          <div class="slot" data-index="9"><span class="slot-num">10</span></div>
-        </div>
-      </div>
+      <div class="input-slots"></div>
 
       <div class="input-stats">
         <div class="stat-item">
@@ -174,23 +163,21 @@
         </div>
       </div>
 
-      <div class="success-toast" id="success-toast">
-        ✅ 参数已解锁，请添加蝙蝠号获取实时监控
-      </div>
+      <div class="success-toast" id="success-toast"></div>
     </section>
 
     <!-- 底部常驻 -->
     <footer class="app-footer">
       <div class="footer-content">
-        <span class="footer-label">添加技术员</span>
-        <span class="footer-id" id="bat-id">142078040</span>
+        <span class="footer-label" id="footer-label"></span>
+        <span class="footer-id" id="bat-id"></span>
       </div>
       <button class="btn-copy" id="btn-copy">
-        复制蝙蝠号
+        复制
       </button>
     </footer>
   </div>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
